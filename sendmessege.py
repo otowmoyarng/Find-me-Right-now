@@ -1,9 +1,26 @@
+# -*- coding: utf-8 -*-
 import requests
+import configparser
 
-line_notify_token = "<ここにアクセストークンを定義する>"
-line_notify_api = 'https://notify-api.line.me/api/notify'
+# 設定ファイル情報
+config = ""
+line_notify_token = ""
+line_notify_api = ""
+
+# iniファイルを読み込み
+def iniread():
+    global config
+    global line_notify_token
+    global line_notify_api
+    config = configparser.ConfigParser()
+    config.read('setting.ini')
+    line_notify_token = config['LINENotify']['line_notify_token']
+    line_notify_api = config['LINENotify']['line_notify_api']
 
 def main():
+    # 設定ファイル読み込み
+    iniread()
+
     print("LINEへ送信するメッセージを入力してください。")
     message = input("送信メッセージ：")
     
