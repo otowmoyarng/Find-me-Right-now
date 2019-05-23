@@ -1,6 +1,6 @@
 import requests
 
-line_notify_token = 'Fx6Wq5z8ZbNO4gOaow39y3XPnEikoQJI6XJsk2sOupq'
+line_notify_token = "<ここにアクセストークンを定義する>"
 line_notify_api = 'https://notify-api.line.me/api/notify'
 
 def main():
