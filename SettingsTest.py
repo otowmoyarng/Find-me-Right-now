@@ -1,24 +1,27 @@
 import unittest
-import Settings
+from Settings import Settings
 
 # Setttingsユニットテストクラス
 class SettingsTest(unittest.TestCase):
 
-    setting = None
-
     # # テスト準備
     def setUp(self):
-        setting = Settings()
-        print(setting)
+        self.config = Settings()
 
     # テストケース：コンストラクタ
     def test_constructor(self):
-        self.assertIsNotNone(setting)
+        self.assertIsNotNone(self.config)
         
-    # テストケース：設定値取得メソッド
-    # def test_settings(self):
-    #     self.assertIsNotNone(setting.getToken())
-    #     self.assertIsNotNone(setting.getAPIPath())
+    # テストケース：iniファイル設定値取得メソッド
+    def test_getSettings(self):
+        self.assertIsNotNone(self.config.getLINENotify_Token())
+        self.assertIsNotNone(self.config.getLINENotify_APIPath())
+
+    # テストケース：iniファイル設定値書き込みメソッド
+    def test_writeSettings(self):
+        token = input('テスト実行するtokenを入力してください。')
+        self.config.writeLINENotify_Token(token)
+        self.assertEqual(token, self.config.getLINENotify_Token())
 
 if __name__ == '__name__':
     unittest.main()
