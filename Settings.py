@@ -5,11 +5,14 @@ from pconst import const
 class Settings:
     
     # setting.ini セクション名
-    const.NOTIFY = 'LINENotify'
+    NOTIFY = 'LINENotify'
+    const.SECTION_LINENotify = NOTIFY
     # LINENotifyセクション　トークン名
-    const.NOTIFY_TOKEN = 'line_notify_token'
+    NOTIFY_TOKEN = 'line_notify_token'
+    const.LINENotify_TOKEN = NOTIFY_TOKEN
     # LINENotifyセクション　URL
-    const.NOTIFY_APIURL = 'line_notify_api'
+    NOTIFY_APIURL = 'line_notify_api'
+    const.LINENotify_APIURL = NOTIFY_APIURL
 
     # コンストラクタ
     # iniファイルを読み込み
@@ -17,14 +20,16 @@ class Settings:
         self.config = ConfigParser()
         self.config.read('setting.ini', encoding="utf-8")
 
+    # ConfigParserインスタンスを生成する
+    def getConfigParserInstance(self):
+        return self.config
+
     # setting.iniよりアクセストークンを取得する
     def getLINENotify_Token(self):
-        return self.config[const.NOTIFY][const.NOTIFY_TOKEN]
+        # return self.config[NOTIFY][NOTIFY_TOKEN]
+        return self.config[const.SECTION_LINENotify][const.LINENotify_TOKEN]
 
     # setting.iniよりアクセスURLを取得する
     def getLINENotify_APIPath(self):
-        return self.config[const.NOTIFY][const.NOTIFY_APIURL]
-
-    # アクセストークン書き込み用
-    def writeLINENotify_Token(self, token):
-        self.config.set(const.NOTIFY, const.NOTIFY_TOKEN, token)
+        # return self.config[NOTIFY][NOTIFY_APIURL]
+        return self.config[const.SECTION_LINENotify][const.LINENotify_APIURL]
