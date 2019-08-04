@@ -16,9 +16,9 @@ class Settings:
 
     # コンストラクタ
     # iniファイルを読み込み
-    def __init__(self):
+    def __init__(self, filename='setting.ini'):
         self.config = ConfigParser()
-        self.config.read('setting.ini', encoding="utf-8")
+        self.config.read(filename, encoding="utf-8")
 
     # ConfigParserインスタンスを生成する
     def getConfigParserInstance(self):
